@@ -2,8 +2,7 @@
 <h1 align="center">TBomb v1.7b</h1>
 <p align="center">An open-source SMS/call bomber for Linux And Termux.</p><br>
 
-## Note:
-
+## NoteS:
 - The script requires working network connection to work.
 - No balance will be deducted for using this script to send SMS/calls.
 - While doing infinite bombing use 2-3 seconds delay and 10 to 20 threads for maximum performance.
@@ -23,7 +22,6 @@ If output looks like `Python 3` - Congrats, Python 3 is installed properly.
 <br>
 
 ## Features:
-
 - Lots of integrated SMS/call APIs
 - Unlimited (Limited against abusing) and super-fast bombing
 - International bombing available
