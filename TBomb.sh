@@ -46,7 +46,7 @@ exit 0
 elif [ $ch -eq 2 ];then
 clear
 echo -e "\e[1;32m"
-echo 'Call Bomb By SpeedX'> call.xxx
+echo 'Call Bomb By Silenthacker'> call.xxx
 python3 bomber.py call
 rm *.xxx >/dev/null 2>&1
 exit 0
@@ -54,9 +54,9 @@ elif [ $ch -eq 3 ];then
 clear
 apt install git -y
 echo -e "\e[1;34m Downloading Latest Files..."
-git clone https://github.com/TheSpeedX/TBomb
+git clone https://github.com/Silenthacker29/Tbomb-Edited.git
 if [[ -s TBomb/TBomb.sh ]];then
-cd TBomb
+cd TBomb-Edited
 cp -r -f * .. > temp
 cd ..
 rm -rf  TBomb >> temp
