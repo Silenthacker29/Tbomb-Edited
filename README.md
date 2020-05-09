@@ -1,8 +1,8 @@
-# Tbomb-Edited
 <h1 align="center">TBomb v1.7b</h1>
 <p align="center">An open-source SMS/call bomber for Linux And Termux.</p><br>
 
-## NoteS:
+## Note:
+
 - The script requires working network connection to work.
 - No balance will be deducted for using this script to send SMS/calls.
 - While doing infinite bombing use 2-3 seconds delay and 10 to 20 threads for maximum performance.
@@ -22,6 +22,7 @@ If output looks like `Python 3` - Congrats, Python 3 is installed properly.
 <br>
 
 ## Features:
+
 - Lots of integrated SMS/call APIs
 - Unlimited (Limited against abusing) and super-fast bombing
 - International bombing available
@@ -47,7 +48,7 @@ To use the bomber type the following commands in Termux:
 ```
 pkg install git
 pkg install python
-git clone https://github.com/TheSpeedX/TBomb.git
+git clone https://github.com/Silenthacker29/TBomb.git
 cd TBomb
 chmod +x TBomb.sh
 ./TBomb.sh
@@ -65,7 +66,50 @@ Commands below provide instructions for Debian-based systems.
 To use the bomber type the following commands in Linux terminal:
 ```
 sudo apt install git
-git clone https://github.com/TheSpeedX/TBomb.git
+git clone https://github.com/Silenthacker29/TBomb.git
 cd TBomb
 chmod +x TBomb.sh
 sudo bash TBomb.sh
+```
+
+### > For macOS:
+
+To use the bomber type the following commands in macOS terminal:
+```
+# Install Brew: 
+
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# Install dependencys:
+
+brew install git
+brew install python3
+sudo easy_install pip
+sudo pip install --upgrade pip
+git clone https://github.com/Silenthacker29/TBomb.git
+cd TBomb
+chmod +x TBomb.sh
+
+# Missing Tools
+
+Toilet cannot be installed yet. But TBomb does still work.
+
+# Run TBomb:
+
+sudo bash TBomb.sh
+```
+## CONTRIBUTORS:
+
+[-] Ping At: https://t.me/INDIANGREYHATS
+
+- **0n1cOn3 (Stefan)**<br>
+
+[-] Mail At: 0n1cOn3@gmx.ch
+
+## Donators:
+
+**[@] 34D30Y ( 34db0y@protonmail.com  )**
+
+**[@] SC AMAN**
+
+Feel Free To Open An Issue...
