@@ -228,15 +228,21 @@ country_codes = {
     '263': 'ZW'
 }
 
-############################
-print ("                                                                             ")
-print (" ░█▀▀▀█ ▀█▀ ░█─── ░█▀▀▀ ░█▄─░█ ▀▀█▀▀ 　 ░█─░█ ─█▀▀█ ░█▀▀█ ░█─▄▀ ░█▀▀▀ ░█▀▀█  ")
-print (" ─▀▀▀▄▄ ░█─ ░█─── ░█▀▀▀ ░█░█░█ ─░█── 　 ░█▀▀█ ░█▄▄█ ░█─── ░█▀▄─ ░█▀▀▀ ░█▄▄▀  ")
-print (" ░█▄▄▄█ ▄█▄ ░█▄▄█ ░█▄▄▄ ░█──▀█ ─░█── 　 ░█─░█ ░█─░█ ░█▄▄█ ░█─░█ ░█▄▄▄ ░█─░█  ")       
-print ("                                                                             ")
-print ("                                         # Owner is Silent-Hacker          \n")
+
+def banner():
+    cprint("""
+ (      (      (               )                 )                         )         (     
+ )\ )   )\ )   )\ )         ( /(    *   )     ( /(     (         (      ( /(         )\ )  
+(()/(  (()/(  (()/(   (     )\()) ` )  /(     )\())    )\        )\     )\())  (    (()/(  
+ /(_))  /(_))  /(_))  )\   ((_)\   ( )(_))   ((_)\  ((((_)(    (((_)  |((_)\   )\    /(_)) 
+(_))   (_))   (_))   ((_)   _((_) (_(_())     _((_)  )\ _ )\   )\___  |_ ((_) ((_)  (_))   
+/ __|  |_ _|  | |    | __| | \| | |_   _|    | || |  (_)_\(_) ((/ __| | |/ /  | __| | _ \  
+\__ \   | |   | |__  | _|  | .` |   | |      | __ |   / _ \    | (__    ' <   | _|  |   /  
+|___/  |___|  |____| |___| |_|\_|   |_|      |_||_|  /_/ \_\    \___|  _|\_\  |___| |_|_\  
+                                                                            """, 'green')
     print()
-    
+
+
 # Counts Number Of SMS in Infinite Mode
 count_inf = 0
 
@@ -559,8 +565,8 @@ if nm == 0:
         print('\tTBomb Shows Better Result in 10 to 50 Threads\n\t\tStill Continuing....')
     print("\n\nPlease Remember That This Is in Experimental Stage And Is Incredibly Fast...")
     t = [None] * nt
-    print("\n\n==================================================================")
-    print("                Gearing Up Bomber, please wait !!               ")
+    print("\n\n==============================================================")
+    print("                Gearing Up Bomber, please wait !!                 ")
     print("     Please keep your data connection active during bombing !!    ")
     print("==================================================================")
     print("             Target Number       : +91", pn)
@@ -568,7 +574,7 @@ if nm == 0:
     print("             Delay               : ", dl)
     print("==================================================================")
     print("              Use this for fun, not for revenge !!                ")
-    print("              This Bomber Was edited BY nandydark credits to owner@speedx !! ")
+    print("              This Bomber Was edited BY silent credits to owner@nandydark !! ")
     print("==================================================================")
     input('\n\nPress CTRL+Z To STOP Bomber... \nPress Enter To Start Bomber...\n')
     os.system('rm *.xxx* > /dev/null 2>&1')
