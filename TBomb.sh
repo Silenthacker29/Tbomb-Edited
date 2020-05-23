@@ -11,7 +11,7 @@ echo .
 apt install figlet toilet python curl -y
 apt install python3-pip
 pip install -r requirements.txt
-echo This Script Was EDITED by Silent-Hacker
+echo This Script Was EDITED by SILENT-HACKER
 echo Requirements Installed....
 echo Press Enter To Continue...
 read upd
@@ -21,9 +21,9 @@ do
 rm *.xxx >/dev/null 2>&1
 clear
 echo -e "\e[1;31m"
-figlet -f slant SILENT-HACKER | lolcat
+figlet SILENT
 echo -e "\e[1;34m \e[1;32m"
-toilet -f mono12 -F border SILENT-HACKER
+toilet -f mono12 -F border SILENT
 echo " "
 echo " "
 echo "Press 1 To  Start SMS Bomber "
@@ -49,7 +49,7 @@ clear
 echo -e "\e[1;31m"
 figlet TBomb
 echo -e "\e[1;34m Created By \e[1;32m"
-toilet -f mono12 -F border SILENT-HACKER
+toilet -f mono12 -F border SILENT
 echo " "
 exit 0
 else
